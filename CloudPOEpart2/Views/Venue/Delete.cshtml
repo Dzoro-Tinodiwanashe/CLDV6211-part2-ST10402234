@@ -1,0 +1,23 @@
+﻿@model CloudPOEpart2.Models.Venue
+
+@{
+    ViewData["Title"] = "Delete Venue";
+}
+
+<h2>Delete Venue</h2>
+
+<h4>Are you sure you want to delete this venue?</h4>
+<div>
+    <h5>@Model.VenueName</h5>
+    <p><strong>Location:</strong> @Model.Location</p>
+    <p><strong>Capacity:</strong> @Model.Capacity</p>
+    <p>
+        <img src="@Model.ImageUrl" alt="Venue Image" width="150" />
+    </p>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="VenueID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

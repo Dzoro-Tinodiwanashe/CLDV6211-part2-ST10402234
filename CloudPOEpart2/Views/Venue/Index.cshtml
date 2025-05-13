@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CloudPOEpart2.Models.Venue>
+
+@{
+    ViewData["Title"] = "Venues List";
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+
+    <a class="btn" href="@Url.Action("Create", "Venue")" style="background-color: black; color: white;">Create New Venue</a>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Venue ID</th>
+                <th>Venue Name</th>
+                <th>Location</th>
+                <th>Capacity</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var venue in Model)
+            {
+                <tr>
+                    <td>@venue.VenueID</td>
+                    <td>@venue.VenueName</td>
+                    <td>@venue.Location</td>
+                    <td>@venue.Capacity</td>
+                    <td>
+                        <img src="@venue.ImageUrl" alt="Venue Image" style="width: 100px; height: auto;" />
+                    </td>
+                    <td>
+                        <a class="btn" href="@Url.Action("Edit", "Venue", new { id = venue.VenueID })" style="background-color: black; color: white;">Edit</a>
+                        <a class="btn" href="@Url.Action("Delete", "Venue", new { id = venue.VenueID })" style="background-color: black; color: white;">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

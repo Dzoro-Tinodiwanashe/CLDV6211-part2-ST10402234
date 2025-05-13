@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CloudPOEpart2.Models.Event>
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<h1>Events</h1>
+
+<p>
+    <a href="@Url.Action("Create", "Event")" class="btn" style="background-color: black; color: white;">Create New Event</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event ID</th>
+            <th>Event Name</th>
+            <th>Description</th>
+            <th>Event Date</th>
+            <th>Venue</th>
+            <th>VenueID - VenueName</th> 
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="7">No events found.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EventID</td>
+                    <td>@item.EventName</td>
+                    <td>@item.Description</td>
+                    <td>@item.EventDate?.ToString("yyyy-MM-dd")</td>
+                    <td>@item.Venue?.VenueName</td>
+                    <td>@item.VenueID - @(item.Venue?.VenueName ?? "NO VENUE FOUND")</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Event", new { id = item.EventID })" class="btn" style="background-color: black; color: white;">Edit</a>
+                        <a href="@Url.Action("Delete", "Event", new { id = item.EventID })" class="btn" style="background-color: black; color: white;">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

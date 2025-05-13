@@ -1,0 +1,37 @@
+﻿@model CloudPOEpart2.Models.Booking
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@{
+    ViewData["Title"] = "Create Booking";
+}
+
+<h1>Create Booking</h1>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    
+    <div class="form-group">
+        <label asp-for="EventID" class="control-label"></label>
+        <select asp-for="EventID" class="form-control" asp-items="ViewBag.Events"></select>
+        <span asp-validation-for="EventID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VenueID" class="control-label"></label>
+        <select asp-for="VenueID" class="form-control" asp-items="ViewBag.Venues"></select>
+        <span asp-validation-for="VenueID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BookingDate" class="control-label"></label>
+        <input asp-for="BookingDate" type="date" class="form-control" />
+        <span asp-validation-for="BookingDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

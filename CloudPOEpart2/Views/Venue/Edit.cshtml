@@ -1,0 +1,53 @@
+﻿@model CloudPOEpart2.Models.Venue
+
+@{
+    ViewData["Title"] = "Edit Venue";
+}
+
+<h2>Edit Venue</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="VenueID" />
+
+    <div class="form-group">
+        <label asp-for="VenueName" class="control-label"></label>
+        <input asp-for="VenueName" class="form-control" />
+        <span asp-validation-for="VenueName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Location" class="control-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Capacity" class="control-label"></label>
+        <input asp-for="Capacity" class="form-control" />
+        <span asp-validation-for="Capacity" class="text-danger"></span>
+    </div>
+
+    <!-- Show current image -->
+    <div class="form-group">
+        <label>Current Image:</label><br />
+        <img src="@Model.ImageUrl" alt="Venue Image" width="150" style="border: 1px solid #ccc; margin-bottom: 10px;" />
+    </div>
+
+    <!-- Image upload field -->
+    <div class="form-group">
+        <label>Upload New Image (optional)</label>
+        <input type="file" name="imageFile" class="form-control" />
+    </div>
+
+    <!-- Hidden input to preserve current ImageUrl if no new image is uploaded -->
+    <input type="hidden" asp-for="ImageUrl" />
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

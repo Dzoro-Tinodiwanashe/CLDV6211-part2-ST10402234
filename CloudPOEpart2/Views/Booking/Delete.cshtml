@@ -1,0 +1,20 @@
+﻿@model CloudPOEpart2.Models.Booking
+
+@{
+    ViewData["Title"] = "Delete Booking";
+}
+
+<h1>Delete Booking</h1>
+
+<h3>Are you sure you want to delete the booking for <strong>@Model.Event.EventName</strong> at <strong>@Model.Venue.VenueName</strong>?</h3>
+
+<div class="form-group">
+    <label>Booking Date:</label>
+    <p>@Model.BookingDate.ToString("MM/dd/yyyy")</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="BookingID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-secondary" asp-controller="Booking" asp-action="Index">Cancel</a>
+</form>

@@ -1,0 +1,36 @@
+﻿@model CloudPOEpart2.Models.Booking
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+@{
+    ViewData["Title"] = "Edit Booking";
+}
+
+<h1>Edit Booking</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="BookingID" />
+
+    <div class="form-group">
+        <label for="EventID">Event</label>
+        <select asp-for="EventID" class="form-control" asp-items="@(new SelectList(ViewData["Events"] as IEnumerable<CloudPOEpart2.Models.Event>, "EventID", "EventName", Model.EventID))"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="VenueID">Venue</label>
+        <select asp-for="VenueID" class="form-control" asp-items="@(new SelectList(ViewData["Venues"] as IEnumerable<CloudPOEpart2.Models.Venue>, "VenueID", "VenueName", Model.VenueID))"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="BookingDate">Booking Date</label>
+        <input asp-for="BookingDate" class="form-control" type="date" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a class="btn btn-secondary" asp-controller="Booking" asp-action="Index">Back to List</a>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

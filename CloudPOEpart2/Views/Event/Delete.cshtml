@@ -1,0 +1,15 @@
+﻿@model CloudPOEpart2.Models.Event
+
+@{
+    ViewData["Title"] = "Delete Event";
+}
+
+<h1>Delete Event</h1>
+
+<h3>Are you sure you want to delete the event: <strong>@Model.EventName</strong>?</h3>
+
+<form method="post">
+    <input type="hidden" asp-for="EventID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("Index", "Event")" class="btn btn-secondary">Cancel</a>
+</form>

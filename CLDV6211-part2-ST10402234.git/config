@@ -1,0 +1,10 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = https://github.com/Dzoro-Tinodiwanashe/CLDV6211-part2-ST10402234.git
+	fetch = +refs/*:refs/*
+	mirror = true
